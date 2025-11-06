@@ -1,0 +1,70 @@
+<div class="dashboard">
+  <div class="stats-grid">
+    @for (stat of stats; track stat.title) {
+      <div class="stat-card">
+        <div class="stat-icon">{{ stat.icon }}</div>
+        <div class="stat-content">
+          <div class="stat-title">{{ stat.title }}</div>
+          <div class="stat-value">{{ stat.value }}</div>
+          <div class="stat-change" [class.positive]="stat.trend === 'up'" [class.negative]="stat.trend === 'down'">
+            <span class="change-indicator">{{ stat.trend === 'up' ? '↑' : '↓' }}</span>
+            <span>{{ stat.change }}</span>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+
+  <div class="content-grid">
+    <div class="chart-card">
+      <div class="card-header">
+        <h3 class="card-title">Revenue Overview</h3>
+        <div class="card-actions">
+          <select class="time-select">
+            <option>Last 7 days</option>
+            <option>Last 30 days</option>
+            <option>Last 90 days</option>
+          </select>
+        </div>
+      </div>
+      <div class="chart-placeholder">
+        <div class="chart-bars">
+          <div class="bar" style="height: 60%"></div>
+          <div class="bar" style="height: 75%"></div>
+          <div class="bar" style="height: 45%"></div>
+          <div class="bar" style="height: 85%"></div>
+          <div class="bar" style="height: 70%"></div>
+          <div class="bar" style="height: 90%"></div>
+          <div class="bar" style="height: 65%"></div>
+        </div>
+        <div class="chart-labels">
+          <span>Mon</span>
+          <span>Tue</span>
+          <span>Wed</span>
+          <span>Thu</span>
+          <span>Fri</span>
+          <span>Sat</span>
+          <span>Sun</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="activity-card">
+      <div class="card-header">
+        <h3 class="card-title">Recent Activity</h3>
+      </div>
+      <div class="activity-list">
+        @for (activity of recentActivities; track activity.user) {
+          <div class="activity-item">
+            <div class="activity-avatar">{{ activity.user[0] }}</div>
+            <div class="activity-content">
+              <div class="activity-user">{{ activity.user }}</div>
+              <div class="activity-action">{{ activity.action }}</div>
+              <div class="activity-time">{{ activity.time }}</div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

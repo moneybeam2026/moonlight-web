@@ -1,0 +1,104 @@
+<div class="analytics">
+  <h2 class="page-heading">Analytics Overview</h2>
+
+  <div class="analytics-grid">
+    <div class="traffic-card">
+      <div class="card-header">
+        <h3 class="card-title">Traffic Sources</h3>
+      </div>
+      <div class="traffic-content">
+        <div class="donut-chart">
+          <div class="donut-center">
+            <div class="donut-total">{{ getTotalTraffic() }}%</div>
+            <div class="donut-label">Total</div>
+          </div>
+        </div>
+        <div class="traffic-legend">
+          @for (source of trafficSources; track source.label) {
+            <div class="legend-item">
+              <div class="legend-color" [style.background]="source.color"></div>
+              <div class="legend-content">
+                <div class="legend-label">{{ source.label }}</div>
+                <div class="legend-value">{{ source.value }}% ({{ getPercentage(source.value).toFixed(1) }}%)</div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="performance-card">
+      <div class="card-header">
+        <h3 class="card-title">Performance Metrics</h3>
+      </div>
+      <div class="metrics-grid">
+        <div class="metric-item">
+          <div class="metric-label">Avg. Load Time</div>
+          <div class="metric-value">1.2s</div>
+          <div class="metric-bar">
+            <div class="metric-progress" style="width: 75%; background: #10b981;"></div>
+          </div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-label">Bounce Rate</div>
+          <div class="metric-value">42%</div>
+          <div class="metric-bar">
+            <div class="metric-progress" style="width: 42%; background: #f59e0b;"></div>
+          </div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-label">Session Duration</div>
+          <div class="metric-value">3m 24s</div>
+          <div class="metric-bar">
+            <div class="metric-progress" style="width: 68%; background: #667eea;"></div>
+          </div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-label">Pages / Session</div>
+          <div class="metric-value">4.2</div>
+          <div class="metric-bar">
+            <div class="metric-progress" style="width: 84%; background: #764ba2;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-views-card">
+    <div class="card-header">
+      <h3 class="card-title">Top Pages by Views</h3>
+    </div>
+    <div class="table-container">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Page</th>
+            <th>Views</th>
+            <th>Change</th>
+            <th>Performance</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (page of pageViews; track page.page) {
+            <tr>
+              <td class="page-name">{{ page.page }}</td>
+              <td class="page-views">{{ page.views.toLocaleString() }}</td>
+              <td>
+                <span class="change-badge" [class.positive]="page.change.includes('+')"
+                      [class.negative]="page.change.includes('-')">
+                  {{ page.change }}
+                </span>
+              </td>
+              <td>
+                <div class="performance-bar">
+                  <div class="performance-fill"
+                       [style.width]="(page.views / 12543 * 100) + '%'"></div>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
