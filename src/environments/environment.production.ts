@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://nestjs-prod-alb-1106157591.us-east-1.elb.amazonaws.com'
+  apiUrl: 'http://nestjs-prod-alb-1106157591.us-east-1.elb.amazonaws.com'
 };
