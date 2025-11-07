@@ -223,3 +223,145 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Users Section */
+.users-section {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-top: 24px;
+}
+
+.refresh-btn {
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.refresh-btn:hover {
+  opacity: 0.9;
+}
+
+.loading-state,
+.error-state,
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  text-align: center;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e8e9f3;
+  border-top-color: #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-state p,
+.empty-state p {
+  color: #6e7191;
+  font-size: 16px;
+  margin: 0;
+}
+
+.error-message {
+  color: #ef4444;
+  font-size: 16px;
+  margin: 0 0 16px 0;
+}
+
+.retry-btn {
+  padding: 10px 20px;
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.retry-btn:hover {
+  opacity: 0.9;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.users-table thead {
+  background: #f5f6fa;
+}
+
+.users-table th {
+  text-align: left;
+  padding: 12px 16px;
+  font-weight: 600;
+  color: #1a1d2e;
+  border-bottom: 2px solid #e8e9f3;
+  white-space: nowrap;
+}
+
+.users-table td {
+  padding: 16px;
+  border-bottom: 1px solid #e8e9f3;
+  color: #6e7191;
+}
+
+.users-table tbody tr {
+  transition: background 0.2s;
+}
+
+.users-table tbody tr:hover {
+  background: #f5f6fa;
+}
+
+.users-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+@media (max-width: 768px) {
+  .users-section {
+    padding: 16px;
+  }
+
+  .table-container {
+    margin: -16px;
+    padding: 16px;
+  }
+
+  .users-table {
+    font-size: 12px;
+  }
+
+  .users-table th,
+  .users-table td {
+    padding: 8px;
+  }
+}

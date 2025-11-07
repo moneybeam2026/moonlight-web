@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/user.model';
 
 interface StatCard {
   title: string;
@@ -16,7 +18,7 @@ interface StatCard {
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
   stats: StatCard[] = [
     {
       title: 'Total Users',
@@ -54,4 +56,31 @@ export class DashboardComponent {
     { user: 'Mike Johnson', action: 'Completed payment', time: '1 hour ago' },
     { user: 'Sarah Williams', action: 'Logged in', time: '2 hours ago' }
   ];
+
+  users: User[] = [];
+  loading: boolean = true;
+  error: string | null = null;
+
+  constructor(private userService: UserService) {}
+
+  ngOnInit(): void {
+    this.loadUsers();
+  }
+
+  loadUsers(): void {
+    this.loading = true;
+    this.error = null;
+
+    this.userService.getUsers().subscribe({
+      next: (data) => {
+        this.users = data;
+        this.loading = false;
+      },
+      error: (err) => {
+        this.error = 'Failed to load users. Please make sure the API is running at http://localhost:3000';
+        this.loading = false;
+        console.error('Error loading users:', err);
+      }
+    });
+  }
 }
